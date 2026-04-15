@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="h2a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#475569"/></marker>
+    <filter id="h2s" x="-4%" y="-4%" width="110%" height="116%">
+      <feDropShadow dx="1" dy="3" stdDeviation="4" flood-color="#64748b" flood-opacity="0.18"/>
+    </filter>
+    <linearGradient id="h2bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/><stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="780" fill="url(#h2bg)" rx="16"/>
+
+  <!-- title -->
+  <text x="600" y="40" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a" letter-spacing="-0.5">Hive Hook - Metadata Capture Flow</text>
+  <text x="600" y="64" text-anchor="middle" font-size="14" fill="#64748b">Step-by-step: What happens when you run a DDL/DML in Hive</text>
+
+  <!-- ============ MAIN FLOW (left-to-right, 2 rows) ============ -->
+
+  <!-- === ROW 1: Steps 1-4 === -->
+  <!-- Phase labels -->
+  <rect x="55" y="88" width="130" height="24" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="120" y="105" text-anchor="middle" font-size="10" font-weight="700" fill="#1e40af">USER ACTION</text>
+  <rect x="325" y="88" width="130" height="24" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="390" y="105" text-anchor="middle" font-size="10" font-weight="700" fill="#1e40af">HIVE EXECUTION</text>
+  <rect x="595" y="88" width="130" height="24" rx="5" fill="#ffedd5" stroke="#fdba74" stroke-width="1"/>
+  <text x="660" y="105" text-anchor="middle" font-size="10" font-weight="700" fill="#c2410c">HOOK TRIGGER</text>
+  <rect x="885" y="88" width="130" height="24" rx="5" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+  <text x="950" y="105" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">KAFKA</text>
+
+  <!-- Step 1 -->
+  <circle cx="80" cy="165" r="26" fill="#2563eb" stroke="#1e40af" stroke-width="2.5"/>
+  <text x="80" y="172" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">1</text>
+  <rect x="50" y="200" width="200" height="130" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#h2s)"/>
+  <text x="150" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">User Runs Query</text>
+  <rect x="70" y="242" width="160" height="38" rx="6" fill="#f0f9ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="150" y="258" text-anchor="middle" font-size="10" font-family="monospace" fill="#1e40af">CREATE TABLE employees</text>
+  <text x="150" y="272" text-anchor="middle" font-size="10" font-family="monospace" fill="#1e40af">(id INT, name STRING)</text>
+  <text x="150" y="298" text-anchor="middle" font-size="10" fill="#64748b">Via Beeline, JDBC, Spark</text>
+  <text x="150" y="315" text-anchor="middle" font-size="10" fill="#64748b">or any Hive client</text>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="250" y1="265" x2="308" y2="265" stroke="#475569" stroke-width="2.5" marker-end="url(#h2a)"/>
+
+  <!-- Step 2 -->
+  <circle cx="350" cy="165" r="26" fill="#2563eb" stroke="#1e40af" stroke-width="2.5"/>
+  <text x="350" y="172" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">2</text>
+  <rect x="320" y="200" width="200" height="130" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#h2s)"/>
+  <text x="420" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">HiveServer2 Executes</text>
+  <text x="420" y="252" text-anchor="middle" font-size="11" fill="#334155">Parses SQL</text>
+  <text x="420" y="270" text-anchor="middle" font-size="11" fill="#334155">Creates execution plan</text>
+  <text x="420" y="288" text-anchor="middle" font-size="11" fill="#334155">Runs query on metastore</text>
+  <rect x="340" y="300" width="160" height="20" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="420" y="315" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Query succeeds</text>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="520" y1="265" x2="578" y2="265" stroke="#ea580c" stroke-width="2.5" marker-end="url(#h2a)"/>
+  <text x="549" y="256" text-anchor="middle" font-size="9" font-weight="600" fill="#ea580c">post-hook</text>
+
+  <!-- Step 3 -->
+  <circle cx="620" cy="165" r="26" fill="#ea580c" stroke="#c2410c" stroke-width="2.5"/>
+  <text x="620" y="172" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">3</text>
+  <rect x="590" y="200" width="230" height="130" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2" filter="url(#h2s)"/>
+  <text x="705" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#c2410c">Atlas Hook Fires</text>
+  <text x="705" y="252" text-anchor="middle" font-size="11" fill="#334155">Extracts metadata:</text>
+  <rect x="610" y="260" width="95" height="20" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="658" y="274" text-anchor="middle" font-size="9" fill="#c2410c">Table name</text>
+  <rect x="715" y="260" width="85" height="20" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="758" y="274" text-anchor="middle" font-size="9" fill="#c2410c">Columns</text>
+  <rect x="610" y="285" width="95" height="20" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="658" y="299" text-anchor="middle" font-size="9" fill="#c2410c">Data types</text>
+  <rect x="715" y="285" width="85" height="20" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="758" y="299" text-anchor="middle" font-size="9" fill="#c2410c">Owner</text>
+  <rect x="610" y="310" width="190" height="18" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+  <text x="705" y="323" text-anchor="middle" font-size="9" fill="#c2410c">Lineage info (if CTAS / INSERT SELECT)</text>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="820" y1="265" x2="878" y2="265" stroke="#d97706" stroke-width="2.5" marker-end="url(#h2a)"/>
+  <text x="849" y="256" text-anchor="middle" font-size="9" font-weight="600" fill="#d97706">JSON</text>
+
+  <!-- Step 4 -->
+  <circle cx="920" cy="165" r="26" fill="#d97706" stroke="#b45309" stroke-width="2.5"/>
+  <text x="920" y="172" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">4</text>
+  <rect x="890" y="200" width="240" height="130" rx="12" fill="#fff" stroke="#d97706" stroke-width="2" filter="url(#h2s)"/>
+  <text x="1010" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#b45309">Kafka: ATLAS_HOOK</text>
+  <text x="1010" y="252" text-anchor="middle" font-size="11" fill="#334155">Hook publishes a JSON</text>
+  <text x="1010" y="270" text-anchor="middle" font-size="11" fill="#334155">notification message to</text>
+  <text x="1010" y="288" text-anchor="middle" font-size="11" fill="#334155">the ATLAS_HOOK topic</text>
+  <rect x="920" y="300" width="180" height="20" rx="4" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+  <text x="1010" y="315" text-anchor="middle" font-size="9" fill="#92400e">Type: ENTITY_CREATE / ENTITY_FULL_UPDATE</text>
+
+  <!-- === ROW 2: Steps 5-7 + result === -->
+  <!-- Connector: Row 1 -> Row 2 -->
+  <path d="M 1010 330 L 1010 380 L 1060 380 L 1060 440 L 1010 440" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+  <circle cx="1060" cy="410" r="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="1060" y="414" text-anchor="middle" font-size="14" fill="#64748b">&#8595;</text>
+
+  <!-- Phase labels row 2 -->
+  <rect x="775" y="420" width="130" height="24" rx="5" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="840" y="437" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">ATLAS INGESTION</text>
+  <rect x="405" y="420" width="130" height="24" rx="5" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="470" y="437" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">ATLAS PROCESSING</text>
+  <rect x="55" y="420" width="130" height="24" rx="5" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="120" y="437" text-anchor="middle" font-size="10" font-weight="700" fill="#166534">PUBLISH</text>
+
+  <!-- Step 5 -->
+  <circle cx="920" cy="495" r="26" fill="#7c3aed" stroke="#6d28d9" stroke-width="2.5"/>
+  <text x="920" y="502" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">5</text>
+  <rect x="770" y="530" width="300" height="100" rx="12" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#h2s)"/>
+  <text x="920" y="558" text-anchor="middle" font-size="14" font-weight="700" fill="#6d28d9">Atlas Consumes Message</text>
+  <text x="920" y="580" text-anchor="middle" font-size="11" fill="#334155">Atlas notification consumer reads</text>
+  <text x="920" y="598" text-anchor="middle" font-size="11" fill="#334155">from the ATLAS_HOOK Kafka topic</text>
+  <text x="920" y="618" text-anchor="middle" font-size="10" fill="#94a3b8">Deserializes JSON entity notification</text>
+
+  <!-- Arrow 5 -> 6 -->
+  <line x1="770" y1="580" x2="712" y2="580" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#h2a)"/>
+
+  <!-- Step 6 -->
+  <circle cx="550" cy="495" r="26" fill="#7c3aed" stroke="#6d28d9" stroke-width="2.5"/>
+  <text x="550" y="502" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">6</text>
+  <rect x="400" y="530" width="300" height="130" rx="12" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#h2s)"/>
+  <text x="550" y="558" text-anchor="middle" font-size="14" font-weight="700" fill="#6d28d9">Atlas Processes &amp; Stores</text>
+  <text x="550" y="582" text-anchor="middle" font-size="11" fill="#334155">Creates entities in the graph:</text>
+  <rect x="420" y="590" width="120" height="20" rx="10" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="480" y="604" text-anchor="middle" font-size="9" font-weight="600" fill="#5b21b6">hive_table</text>
+  <rect x="550" y="590" width="120" height="20" rx="10" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="610" y="604" text-anchor="middle" font-size="9" font-weight="600" fill="#5b21b6">hive_column (x5)</text>
+  <rect x="420" y="616" width="120" height="20" rx="10" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="480" y="630" text-anchor="middle" font-size="9" font-weight="600" fill="#5b21b6">hive_db</text>
+  <rect x="550" y="616" width="120" height="20" rx="10" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+  <text x="610" y="630" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">hive_process*</text>
+  <text x="550" y="652" text-anchor="middle" font-size="9" fill="#94a3b8">* hive_process only for CTAS / INSERT SELECT / CREATE VIEW</text>
+
+  <!-- Arrow 6 -> 7 -->
+  <line x1="400" y1="595" x2="340" y2="595" stroke="#16a34a" stroke-width="2.5" marker-end="url(#h2a)"/>
+
+  <!-- Step 7 -->
+  <circle cx="180" cy="495" r="26" fill="#16a34a" stroke="#15803d" stroke-width="2.5"/>
+  <text x="180" y="502" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">7</text>
+  <rect x="50" y="530" width="260" height="100" rx="12" fill="#fff" stroke="#16a34a" stroke-width="2" filter="url(#h2s)"/>
+  <text x="180" y="558" text-anchor="middle" font-size="14" font-weight="700" fill="#15803d">Publish Change Events</text>
+  <text x="180" y="580" text-anchor="middle" font-size="11" fill="#334155">Atlas publishes to Kafka topic</text>
+  <rect x="80" y="590" width="200" height="24" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+  <text x="180" y="607" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">ATLAS_ENTITIES</text>
+  <text x="180" y="623" text-anchor="middle" font-size="9" fill="#64748b">Consumed by Ranger TagSync</text>
+
+  <!-- ============ RESULT BOX ============ -->
+  <rect x="50" y="660" width="1100" height="100" rx="14" fill="#fff" stroke="#16a34a" stroke-width="2" filter="url(#h2s)"/>
+  <rect x="50" y="660" width="1100" height="34" rx="14" fill="#16a34a"/>
+  <rect x="50" y="682" width="1100" height="12" fill="#16a34a"/>
+  <text x="600" y="682" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">Result: Now Visible in Atlas UI  (http://&lt;atlas-host&gt;:21000)</text>
+
+  <!-- Result items -->
+  <rect x="80" y="705" width="220" height="40" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="190" y="722" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Entity</text>
+  <text x="190" y="738" text-anchor="middle" font-size="10" fill="#334155">atlas_test_db.employees</text>
+
+  <rect x="320" y="705" width="220" height="40" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="430" y="722" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Schema</text>
+  <text x="430" y="738" text-anchor="middle" font-size="10" fill="#334155">5 columns with types</text>
+
+  <rect x="560" y="705" width="220" height="40" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="670" y="722" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Lineage</text>
+  <text x="670" y="738" text-anchor="middle" font-size="10" fill="#334155">Graph (if CTAS/INSERT SELECT)</text>
+
+  <rect x="800" y="705" width="220" height="40" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="910" y="722" text-anchor="middle" font-size="10" font-weight="600" fill="#166534">Audit Trail</text>
+  <text x="910" y="738" text-anchor="middle" font-size="10" fill="#334155">ENTITY_CREATE event logged</text>
+
+  <!-- ============ LINEAGE NOTE ============ -->
+  <rect x="50" y="86" width="1100" height="0" rx="0" fill="none"/>
+  <!-- Lineage callout at top-right -->
+  <rect x="1040" y="88" width="110" height="24" rx="5" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+  <text x="1095" y="105" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">LINEAGE NOTE</text>
+
+  <rect x="1040" y="120" width="130" height="210" rx="10" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+  <text x="1105" y="145" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">Creates lineage:</text>
+  <text x="1105" y="165" text-anchor="middle" font-size="9" fill="#16a34a" font-weight="600">CTAS</text>
+  <text x="1105" y="183" text-anchor="middle" font-size="9" fill="#16a34a" font-weight="600">INSERT...SELECT</text>
+  <text x="1105" y="201" text-anchor="middle" font-size="9" fill="#16a34a" font-weight="600">CREATE VIEW</text>
+  <line x1="1055" y1="215" x2="1155" y2="215" stroke="#fde68a" stroke-width="1"/>
+  <text x="1105" y="235" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">No lineage:</text>
+  <text x="1105" y="253" text-anchor="middle" font-size="9" fill="#dc2626">INSERT VALUES</text>
+  <text x="1105" y="271" text-anchor="middle" font-size="9" fill="#dc2626">CREATE TABLE</text>
+  <text x="1105" y="289" text-anchor="middle" font-size="9" fill="#dc2626">ALTER TABLE</text>
+  <text x="1105" y="307" text-anchor="middle" font-size="9" fill="#dc2626">DROP TABLE</text>
+</svg>

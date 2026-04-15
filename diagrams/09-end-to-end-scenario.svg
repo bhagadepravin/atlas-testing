@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="ea" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+    </marker>
+    <filter id="s9" x="-3%" y="-3%" width="108%" height="112%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#94a3b8" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="bg9" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#fed7aa;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="550" fill="url(#bg9)" rx="12"/>
+  <text x="550" y="35" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">End-to-End PII Protection Scenario</text>
+  <text x="550" y="55" text-anchor="middle" font-size="12" fill="#64748b">Complete workflow: Table creation -> Metadata capture -> Tagging -> Masking -> Testing</text>
+
+  <!-- Step boxes in a flow -->
+  <!-- Step 1 -->
+  <rect x="30" y="80" width="190" height="110" rx="10" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="55" cy="100" r="14" fill="#2563eb"/>
+  <text x="55" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text>
+  <text x="130" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">Create Table</text>
+  <text x="120" y="125" text-anchor="middle" font-size="9" fill="#334155">CREATE TABLE hr_employees</text>
+  <text x="120" y="140" text-anchor="middle" font-size="9" fill="#334155">(name, email, ssn, salary)</text>
+  <text x="120" y="155" text-anchor="middle" font-size="9" fill="#334155">INSERT test data</text>
+  <text x="120" y="175" text-anchor="middle" font-size="8" fill="#64748b">via Beeline / HiveServer2</text>
+
+  <line x1="220" y1="135" x2="250" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#ea)"/>
+
+  <!-- Step 2 -->
+  <rect x="260" y="80" width="190" height="110" rx="10" fill="#fff" stroke="#ea580c" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="285" cy="100" r="14" fill="#ea580c"/>
+  <text x="285" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text>
+  <text x="365" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#ea580c">Hook Captures</text>
+  <text x="355" y="125" text-anchor="middle" font-size="9" fill="#334155">Hive Hook fires</text>
+  <text x="355" y="140" text-anchor="middle" font-size="9" fill="#334155">Metadata -> Kafka</text>
+  <text x="355" y="155" text-anchor="middle" font-size="9" fill="#334155">Atlas creates entities</text>
+  <text x="355" y="175" text-anchor="middle" font-size="8" fill="#64748b">automatic, no user action</text>
+
+  <line x1="450" y1="135" x2="480" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#ea)"/>
+
+  <!-- Step 3 -->
+  <rect x="490" y="80" width="190" height="110" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="515" cy="100" r="14" fill="#7c3aed"/>
+  <text x="515" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">3</text>
+  <text x="595" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Create Tags</text>
+  <text x="585" y="125" text-anchor="middle" font-size="9" fill="#334155">PII (parent)</text>
+  <text x="585" y="140" text-anchor="middle" font-size="9" fill="#334155">PII_SSN, PII_EMAIL</text>
+  <text x="585" y="155" text-anchor="middle" font-size="9" fill="#334155">FINANCIAL</text>
+  <text x="585" y="175" text-anchor="middle" font-size="8" fill="#64748b">Atlas UI or REST API</text>
+
+  <line x1="680" y1="135" x2="710" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#ea)"/>
+
+  <!-- Step 4 -->
+  <rect x="720" y="80" width="190" height="110" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="745" cy="100" r="14" fill="#7c3aed"/>
+  <text x="745" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">4</text>
+  <text x="825" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Tag Columns</text>
+  <text x="815" y="125" text-anchor="middle" font-size="9" fill="#334155">name -> PII_NAME</text>
+  <text x="815" y="140" text-anchor="middle" font-size="9" fill="#334155">ssn -> PII_SSN</text>
+  <text x="815" y="155" text-anchor="middle" font-size="9" fill="#334155">email -> PII_EMAIL</text>
+  <text x="815" y="170" text-anchor="middle" font-size="9" fill="#334155">salary -> FINANCIAL</text>
+
+  <!-- Step 5 -->
+  <rect x="920" y="80" width="150" height="110" rx="10" fill="#fff" stroke="#d97706" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="945" cy="100" r="14" fill="#d97706"/>
+  <text x="945" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5</text>
+  <text x="995" y="103" text-anchor="middle" font-size="10" font-weight="700" fill="#d97706">TagSync</text>
+  <text x="995" y="125" text-anchor="middle" font-size="9" fill="#334155">Tags sync to</text>
+  <text x="995" y="140" text-anchor="middle" font-size="9" fill="#334155">Ranger via</text>
+  <text x="995" y="155" text-anchor="middle" font-size="9" fill="#334155">tagsync daemon</text>
+  <text x="995" y="175" text-anchor="middle" font-size="8" fill="#64748b">~30-60 seconds</text>
+
+  <line x1="910" y1="135" x2="918" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#ea)"/>
+
+  <!-- Arrow down from step 5 -->
+  <line x1="995" y1="190" x2="995" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#ea)"/>
+
+  <!-- Step 6 -->
+  <rect x="720" y="240" width="350" height="110" rx="10" fill="#fff" stroke="#dc2626" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="745" cy="260" r="14" fill="#dc2626"/>
+  <text x="745" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">6</text>
+  <text x="900" y="263" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Create Ranger Masking Policies</text>
+
+  <rect x="740" y="280" width="150" height="22" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="815" y="296" text-anchor="middle" font-size="9" fill="#991b1b">PII_NAME -> Redact</text>
+  <rect x="900" y="280" width="150" height="22" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="975" y="296" text-anchor="middle" font-size="9" fill="#991b1b">PII_SSN -> Partial Mask</text>
+  <rect x="740" y="306" width="150" height="22" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="815" y="322" text-anchor="middle" font-size="9" fill="#991b1b">PII_EMAIL -> Hash</text>
+  <rect x="900" y="306" width="150" height="22" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="975" y="322" text-anchor="middle" font-size="9" fill="#991b1b">FINANCIAL -> Nullify</text>
+  <rect x="810" y="332" width="180" height="18" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="900" y="346" text-anchor="middle" font-size="8" fill="#166534">data_admins -> Unmasked (override)</text>
+
+  <!-- Arrow left from step 6 -->
+  <line x1="720" y1="295" x2="690" y2="295" stroke="#475569" stroke-width="2" marker-end="url(#ea)"/>
+
+  <!-- Step 7 -->
+  <rect x="30" y="240" width="650" height="120" rx="10" fill="#fff" stroke="#16a34a" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="55" cy="260" r="14" fill="#16a34a"/>
+  <text x="55" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">7</text>
+  <text x="165" y="263" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">Test Results</text>
+
+  <!-- Analyst result -->
+  <text x="50" y="290" font-size="10" font-weight="600" fill="#dc2626">Analyst queries: SELECT * FROM hr_employees</text>
+  <rect x="50" y="298" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="2"/>
+  <text x="85" y="311" text-anchor="middle" font-size="8" fill="#991b1b">xxxx xxxxx</text>
+  <rect x="125" y="298" width="85" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="2"/>
+  <text x="167" y="311" text-anchor="middle" font-size="8" fill="#991b1b">a8cf3d2e...</text>
+  <rect x="215" y="298" width="80" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="2"/>
+  <text x="255" y="311" text-anchor="middle" font-size="8" fill="#991b1b">XXXXX6789</text>
+  <rect x="300" y="298" width="50" height="18" fill="#fff7ed" stroke="#fdba74" stroke-width="1" rx="2"/>
+  <text x="325" y="311" text-anchor="middle" font-size="8" fill="#c2410c">NULL</text>
+  <rect x="355" y="298" width="70" height="18" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="2"/>
+  <text x="390" y="311" text-anchor="middle" font-size="8" fill="#334155">Engineering</text>
+
+  <!-- Admin result -->
+  <text x="50" y="338" font-size="10" font-weight="600" fill="#16a34a">Admin queries: SELECT * FROM hr_employees</text>
+  <rect x="50" y="346" width="70" height="18" fill="#f0fdf4" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="85" y="359" text-anchor="middle" font-size="8" fill="#166534">Alice Smith</text>
+  <rect x="125" y="346" width="85" height="18" fill="#f0fdf4" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="167" y="359" text-anchor="middle" font-size="8" fill="#166534">alice@corp.com</text>
+  <rect x="215" y="346" width="80" height="18" fill="#f0fdf4" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="255" y="359" text-anchor="middle" font-size="8" fill="#166534">123-45-6789</text>
+  <rect x="300" y="346" width="50" height="18" fill="#f0fdf4" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="325" y="359" text-anchor="middle" font-size="8" fill="#166534">125000</text>
+  <rect x="355" y="346" width="70" height="18" fill="#f0fdf4" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="390" y="359" text-anchor="middle" font-size="8" fill="#166534">Engineering</text>
+
+  <!-- Step 8: Propagation test -->
+  <rect x="30" y="390" width="520" height="80" rx="10" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="55" cy="410" r="14" fill="#7c3aed"/>
+  <text x="55" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">8</text>
+  <text x="195" y="413" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Verify Tag Propagation</text>
+  <text x="290" y="438" text-anchor="middle" font-size="10" fill="#334155">CREATE TABLE hr_summary AS SELECT name, email, salary FROM hr_employees;</text>
+  <text x="290" y="458" text-anchor="middle" font-size="10" fill="#7c3aed">-> hr_summary automatically inherits PII and FINANCIAL tags -> masking applies there too</text>
+
+  <!-- Step 9: Audit -->
+  <rect x="580" y="390" width="490" height="80" rx="10" fill="#fff" stroke="#475569" stroke-width="2" filter="url(#s9)"/>
+  <circle cx="605" cy="410" r="14" fill="#475569"/>
+  <text x="605" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">9</text>
+  <text x="760" y="413" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">Check Audit Logs</text>
+  <text x="825" y="438" text-anchor="middle" font-size="10" fill="#334155">Atlas: Entity audits tab shows CREATE, CLASSIFICATION_ADD events</text>
+  <text x="825" y="458" text-anchor="middle" font-size="10" fill="#334155">Ranger: Audit tab shows who accessed what, with masking details</text>
+
+  <!-- Bottom status bar -->
+  <rect x="30" y="490" width="1040" height="45" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="550" y="512" text-anchor="middle" font-size="13" font-weight="700" fill="#166534">Data is governed end-to-end: discoverable in Atlas, classified with tags, protected by Ranger masking</text>
+  <text x="550" y="528" text-anchor="middle" font-size="10" fill="#334155">Same data, different views based on user role - zero changes to the actual table data</text>
+</svg>

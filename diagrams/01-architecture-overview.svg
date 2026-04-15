@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#475569"/></marker>
+    <marker id="a1b" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2563eb"/></marker>
+    <marker id="a1o" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#ea580c"/></marker>
+    <marker id="a1g" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#16a34a"/></marker>
+    <marker id="a1r" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#dc2626"/></marker>
+    <marker id="a1y" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#d97706"/></marker>
+    <filter id="sh1" x="-4%" y="-4%" width="110%" height="116%">
+      <feDropShadow dx="1" dy="3" stdDeviation="4" flood-color="#64748b" flood-opacity="0.18"/>
+    </filter>
+    <linearGradient id="gbg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- canvas -->
+  <rect width="1200" height="880" fill="url(#gbg)" rx="16"/>
+
+  <!-- title -->
+  <text x="600" y="42" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a" letter-spacing="-0.5">Apache Atlas  -  Architecture &amp; Data Flow</text>
+  <text x="600" y="66" text-anchor="middle" font-size="14" fill="#64748b">End-to-end metadata governance: from Hive query to Ranger enforcement</text>
+
+  <!-- ============ ZONE BACKGROUNDS ============ -->
+  <!-- Hive Zone -->
+  <rect x="30" y="90" width="520" height="210" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" opacity="0.7"/>
+  <text x="50" y="114" font-size="12" font-weight="700" fill="#1e40af" letter-spacing="1" text-transform="uppercase">HIVE EXECUTION LAYER</text>
+
+  <!-- Kafka Zone -->
+  <rect x="580" y="90" width="590" height="210" rx="14" fill="#fefce8" stroke="#fde68a" stroke-width="1.5" opacity="0.7"/>
+  <text x="600" y="114" font-size="12" font-weight="700" fill="#92400e" letter-spacing="1">MESSAGING LAYER</text>
+
+  <!-- Atlas Zone -->
+  <rect x="30" y="330" width="740" height="240" rx="14" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" opacity="0.7"/>
+  <text x="50" y="354" font-size="12" font-weight="700" fill="#6d28d9" letter-spacing="1">METADATA GOVERNANCE LAYER</text>
+
+  <!-- Ranger Zone -->
+  <rect x="30" y="600" width="1140" height="260" rx="14" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5" opacity="0.7"/>
+  <text x="50" y="624" font-size="12" font-weight="700" fill="#991b1b" letter-spacing="1">POLICY ENFORCEMENT LAYER</text>
+
+  <!-- ============ HIVE ZONE ============ -->
+  <!-- Hive Client -->
+  <rect x="55" y="135" width="175" height="140" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#sh1)"/>
+  <rect x="55" y="135" width="175" height="34" rx="12" fill="#2563eb"/>
+  <rect x="55" y="157" width="175" height="12" fill="#2563eb"/>
+  <text x="143" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Hive Client</text>
+  <!-- icon: terminal -->
+  <rect x="80" y="185" width="125" height="22" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="143" y="200" text-anchor="middle" font-size="10" font-family="monospace" fill="#1e40af">beeline&gt; CREATE...</text>
+  <text x="143" y="225" text-anchor="middle" font-size="11" fill="#475569">Beeline / JDBC / Spark</text>
+  <text x="143" y="243" text-anchor="middle" font-size="11" fill="#475569">DDL &amp; DML queries</text>
+  <text x="143" y="265" text-anchor="middle" font-size="10" fill="#94a3b8" font-weight="600">Port: 10000</text>
+
+  <!-- Arrow Client -> HS2 -->
+  <line x1="230" y1="205" x2="278" y2="205" stroke="#2563eb" stroke-width="2.5" marker-end="url(#a1b)"/>
+  <text x="254" y="198" text-anchor="middle" font-size="9" font-weight="600" fill="#2563eb">SQL</text>
+
+  <!-- HiveServer2 -->
+  <rect x="290" y="135" width="230" height="140" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#sh1)"/>
+  <rect x="290" y="135" width="230" height="34" rx="12" fill="#2563eb"/>
+  <rect x="290" y="157" width="230" height="12" fill="#2563eb"/>
+  <text x="405" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">HiveServer2</text>
+  <text x="405" y="190" text-anchor="middle" font-size="11" fill="#334155">Parses, optimizes, executes</text>
+  <text x="405" y="208" text-anchor="middle" font-size="11" fill="#334155">queries on Hive metastore</text>
+  <!-- sub-chips -->
+  <rect x="305" y="224" width="95" height="22" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="353" y="239" text-anchor="middle" font-size="9" font-weight="600" fill="#1e40af">Query Engine</text>
+  <rect x="410" y="224" width="95" height="22" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="458" y="239" text-anchor="middle" font-size="9" font-weight="600" fill="#1e40af">Metastore</text>
+  <!-- Ranger Plugin inside HS2 -->
+  <rect x="305" y="252" width="200" height="18" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+  <text x="405" y="265" text-anchor="middle" font-size="8" font-weight="700" fill="#991b1b">Ranger Hive Plugin (enforces access/masking)</text>
+
+  <!-- ============ HOOK + KAFKA ZONE ============ -->
+  <!-- Atlas Hive Hook (inside Hive zone conceptually but bridges to Kafka) -->
+  <rect x="605" y="135" width="220" height="140" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2" filter="url(#sh1)"/>
+  <rect x="605" y="135" width="220" height="34" rx="12" fill="#ea580c"/>
+  <rect x="605" y="157" width="220" height="12" fill="#ea580c"/>
+  <text x="715" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Atlas Hive Hook</text>
+  <text x="715" y="190" text-anchor="middle" font-size="11" fill="#334155">Post-execution hook</text>
+  <text x="715" y="208" text-anchor="middle" font-size="11" fill="#334155">inside HiveServer2</text>
+  <text x="715" y="230" text-anchor="middle" font-size="10" fill="#64748b">Extracts metadata:</text>
+  <text x="715" y="246" text-anchor="middle" font-size="10" fill="#64748b">tables, columns, types,</text>
+  <text x="715" y="262" text-anchor="middle" font-size="10" fill="#64748b">owner, lineage graph</text>
+
+  <!-- Arrow HS2 -> Hook -->
+  <line x1="520" y1="195" x2="603" y2="195" stroke="#ea580c" stroke-width="2.5" marker-end="url(#a1o)"/>
+  <text x="561" y="188" text-anchor="middle" font-size="9" font-weight="600" fill="#ea580c">triggers</text>
+
+  <!-- Kafka Broker -->
+  <rect x="870" y="135" width="270" height="140" rx="12" fill="#fff" stroke="#475569" stroke-width="2" filter="url(#sh1)"/>
+  <rect x="870" y="135" width="270" height="34" rx="12" fill="#475569"/>
+  <rect x="870" y="157" width="270" height="12" fill="#475569"/>
+  <text x="1005" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Apache Kafka</text>
+  <text x="1005" y="186" text-anchor="middle" font-size="10" fill="#64748b">Port: 9092  |  ZooKeeper: 2181</text>
+  <!-- Topic boxes -->
+  <rect x="888" y="200" width="115" height="55" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="946" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">ATLAS_HOOK</text>
+  <text x="946" y="236" text-anchor="middle" font-size="9" fill="#92400e">Inbound</text>
+  <text x="946" y="248" text-anchor="middle" font-size="8" fill="#b45309">(hook -> Atlas)</text>
+
+  <rect x="1013" y="200" width="115" height="55" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="1071" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">ATLAS_ENTITIES</text>
+  <text x="1071" y="236" text-anchor="middle" font-size="9" fill="#166534">Outbound</text>
+  <text x="1071" y="248" text-anchor="middle" font-size="8" fill="#15803d">(Atlas -> consumers)</text>
+
+  <!-- Arrow Hook -> Kafka ATLAS_HOOK -->
+  <line x1="825" y1="220" x2="886" y2="225" stroke="#d97706" stroke-width="2.5" marker-end="url(#a1y)"/>
+  <text x="856" y="210" text-anchor="middle" font-size="9" font-weight="600" fill="#d97706">publish</text>
+
+  <!-- ============ ATLAS ZONE ============ -->
+  <!-- Arrow Kafka ATLAS_HOOK -> Atlas Server -->
+  <path d="M 946 255 L 946 310 L 420 310 L 420 370" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#a1y)"/>
+  <text x="680" y="304" text-anchor="middle" font-size="9" font-weight="600" fill="#d97706">consume from ATLAS_HOOK</text>
+
+  <!-- Atlas Server -->
+  <rect x="170" y="380" width="500" height="165" rx="14" fill="#fff" stroke="#7c3aed" stroke-width="2.5" filter="url(#sh1)"/>
+  <rect x="170" y="380" width="500" height="38" rx="14" fill="#7c3aed"/>
+  <rect x="170" y="406" width="500" height="12" fill="#7c3aed"/>
+  <text x="420" y="404" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">Apache Atlas Server</text>
+  <text x="420" y="438" text-anchor="middle" font-size="12" fill="#334155">Central Metadata Governance &amp; Catalog</text>
+  <text x="420" y="456" text-anchor="middle" font-size="11" fill="#64748b">REST API: http://&lt;host&gt;:21000  |  UI: http://&lt;host&gt;:21000</text>
+  <!-- Feature chips -->
+  <rect x="195" y="472" width="85" height="30" rx="6" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="238" y="488" text-anchor="middle" font-size="9" fill="#5b21b6">Type System</text>
+  <text x="238" y="498" text-anchor="middle" font-size="8" fill="#7c3aed">Definitions</text>
+
+  <rect x="290" y="472" width="85" height="30" rx="6" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="333" y="488" text-anchor="middle" font-size="9" fill="#5b21b6">Lineage</text>
+  <text x="333" y="498" text-anchor="middle" font-size="8" fill="#7c3aed">Graph</text>
+
+  <rect x="385" y="472" width="85" height="30" rx="6" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="428" y="488" text-anchor="middle" font-size="9" fill="#5b21b6">Search</text>
+  <text x="428" y="498" text-anchor="middle" font-size="8" fill="#7c3aed">DSL + Fulltext</text>
+
+  <rect x="480" y="472" width="85" height="30" rx="6" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="523" y="488" text-anchor="middle" font-size="9" fill="#5b21b6">Classifications</text>
+  <text x="523" y="498" text-anchor="middle" font-size="8" fill="#7c3aed">Tags + Propagation</text>
+
+  <rect x="195" y="510" width="85" height="30" rx="6" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="238" y="526" text-anchor="middle" font-size="9" fill="#5b21b6">Glossary</text>
+  <text x="238" y="536" text-anchor="middle" font-size="8" fill="#7c3aed">Business Terms</text>
+
+  <rect x="290" y="510" width="85" height="30" rx="6" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="333" y="526" text-anchor="middle" font-size="9" fill="#5b21b6">Audits</text>
+  <text x="333" y="536" text-anchor="middle" font-size="8" fill="#7c3aed">Change History</text>
+
+  <!-- Arrow Atlas -> Kafka ATLAS_ENTITIES (publish) -->
+  <path d="M 670 440 L 790 440 L 790 310 L 1071 310 L 1071 255" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#a1g)"/>
+  <text x="875" y="304" text-anchor="middle" font-size="9" font-weight="600" fill="#16a34a">publish to ATLAS_ENTITIES</text>
+
+  <!-- Storage backends (left of Atlas) -->
+  <rect x="50" y="395" width="100" height="65" rx="10" fill="#fff" stroke="#475569" stroke-width="1.5" filter="url(#sh1)"/>
+  <text x="100" y="420" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">HBase</text>
+  <text x="100" y="438" text-anchor="middle" font-size="9" fill="#64748b">Entity Storage</text>
+  <text x="100" y="451" text-anchor="middle" font-size="8" fill="#94a3b8">Port: 16010</text>
+  <line x1="150" y1="428" x2="168" y2="428" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <rect x="50" y="480" width="100" height="65" rx="10" fill="#fff" stroke="#475569" stroke-width="1.5" filter="url(#sh1)"/>
+  <text x="100" y="505" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">Solr</text>
+  <text x="100" y="523" text-anchor="middle" font-size="9" fill="#64748b">Search Index</text>
+  <text x="100" y="536" text-anchor="middle" font-size="8" fill="#94a3b8">Port: 8983</text>
+  <line x1="150" y1="513" x2="168" y2="495" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ============ RANGER ZONE ============ -->
+  <!-- Arrow Kafka ATLAS_ENTITIES -> TagSync -->
+  <path d="M 1071 255 L 1071 635" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#a1g)"/>
+  <text x="1082" y="500" font-size="9" font-weight="600" fill="#16a34a" transform="rotate(90,1082,500)">consume events</text>
+
+  <!-- Ranger TagSync -->
+  <rect x="920" y="645" width="230" height="100" rx="12" fill="#fff" stroke="#dc2626" stroke-width="2" filter="url(#sh1)"/>
+  <rect x="920" y="645" width="230" height="34" rx="12" fill="#dc2626"/>
+  <rect x="920" y="667" width="230" height="12" fill="#dc2626"/>
+  <text x="1035" y="667" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Ranger TagSync</text>
+  <text x="1035" y="700" text-anchor="middle" font-size="11" fill="#334155">Reads from ATLAS_ENTITIES</text>
+  <text x="1035" y="718" text-anchor="middle" font-size="11" fill="#334155">Pushes tags to Ranger Admin</text>
+  <text x="1035" y="736" text-anchor="middle" font-size="9" fill="#94a3b8">Daemon process | Polls periodically</text>
+
+  <!-- Arrow TagSync -> Ranger Admin -->
+  <line x1="920" y1="695" x2="838" y2="695" stroke="#dc2626" stroke-width="2.5" marker-end="url(#a1r)"/>
+  <text x="879" y="688" text-anchor="middle" font-size="9" font-weight="600" fill="#dc2626">REST</text>
+
+  <!-- Ranger Admin -->
+  <rect x="420" y="640" width="410" height="115" rx="14" fill="#fff" stroke="#dc2626" stroke-width="2.5" filter="url(#sh1)"/>
+  <rect x="420" y="640" width="410" height="38" rx="14" fill="#dc2626"/>
+  <rect x="420" y="666" width="410" height="12" fill="#dc2626"/>
+  <text x="625" y="664" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">Apache Ranger Admin</text>
+  <text x="625" y="698" text-anchor="middle" font-size="12" fill="#334155">Centralized Policy Management &amp; Audit</text>
+  <text x="625" y="716" text-anchor="middle" font-size="11" fill="#64748b">UI: http://&lt;host&gt;:6080</text>
+  <!-- Policy chips -->
+  <rect x="445" y="728" width="110" height="22" rx="5" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="500" y="743" text-anchor="middle" font-size="9" font-weight="600" fill="#991b1b">Access Policies</text>
+  <rect x="565" y="728" width="120" height="22" rx="5" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="625" y="743" text-anchor="middle" font-size="9" font-weight="600" fill="#991b1b">Masking Policies</text>
+  <rect x="695" y="728" width="120" height="22" rx="5" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="755" y="743" text-anchor="middle" font-size="9" font-weight="600" fill="#991b1b">Row Filter Policies</text>
+
+  <!-- Arrow Ranger Admin -> Hive Plugin -->
+  <path d="M 625 640 L 625 610 L 405 610 L 405 277" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7,4" marker-end="url(#a1r)"/>
+  <text x="515" y="605" text-anchor="middle" font-size="9" font-weight="600" fill="#dc2626">download policies + tags</text>
+
+  <!-- Ranger Audit DB -->
+  <rect x="55" y="660" width="160" height="80" rx="10" fill="#fff" stroke="#475569" stroke-width="1.5" filter="url(#sh1)"/>
+  <text x="135" y="690" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">Audit Store</text>
+  <text x="135" y="708" text-anchor="middle" font-size="10" fill="#64748b">Solr / HDFS / DB</text>
+  <text x="135" y="724" text-anchor="middle" font-size="9" fill="#94a3b8">Who accessed what, when</text>
+  <line x1="215" y1="700" x2="418" y2="700" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- User access flow -->
+  <rect x="240" y="780" width="360" height="70" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#sh1)"/>
+  <text x="420" y="808" text-anchor="middle" font-size="13" font-weight="700" fill="#1e40af">User Query at Runtime</text>
+  <text x="420" y="828" text-anchor="middle" font-size="10" fill="#64748b">beeline -n analyst -e "SELECT salary FROM employees"</text>
+  <text x="420" y="843" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600">-> Ranger plugin checks tag policies -> Applies masking -> Returns result</text>
+
+  <!-- ============ LEGEND ============ -->
+  <rect x="830" y="780" width="340" height="80" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="850" y="800" font-size="11" font-weight="700" fill="#334155">Legend</text>
+  <line x1="850" y1="816" x2="886" y2="816" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="892" y="820" font-size="10" fill="#475569">Hive query flow</text>
+  <line x1="990" y1="816" x2="1026" y2="816" stroke="#ea580c" stroke-width="2.5"/>
+  <text x="1032" y="820" font-size="10" fill="#475569">Hook trigger</text>
+  <line x1="850" y1="836" x2="886" y2="836" stroke="#d97706" stroke-width="2.5"/>
+  <text x="892" y="840" font-size="10" fill="#475569">Inbound to Atlas</text>
+  <line x1="990" y1="836" x2="1026" y2="836" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="1032" y="840" font-size="10" fill="#475569">Outbound events</text>
+  <line x1="850" y1="852" x2="886" y2="852" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <text x="892" y="856" font-size="10" fill="#475569">Policy download</text>
+  <line x1="990" y1="852" x2="1026" y2="852" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="1032" y="856" font-size="10" fill="#475569">Storage link</text>
+</svg>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="ta" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+    </marker>
+    <filter id="s8" x="-3%" y="-3%" width="108%" height="112%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#94a3b8" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="bg8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#d1fae5;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="420" fill="url(#bg8)" rx="12"/>
+  <text x="500" y="35" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Atlas-Ranger TagSync Integration</text>
+  <text x="500" y="55" text-anchor="middle" font-size="12" fill="#64748b">How classifications assigned in Atlas automatically become enforceable policies in Ranger</text>
+
+  <!-- Timeline -->
+  <line x1="50" y1="100" x2="950" y2="100" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Step 1: Assign tag -->
+  <circle cx="100" cy="100" r="24" fill="#7c3aed" stroke="#fff" stroke-width="3"/>
+  <text x="100" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
+  <rect x="30" y="140" width="150" height="90" rx="8" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#s8)"/>
+  <text x="105" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Assign Tag in Atlas</text>
+  <text x="105" y="182" text-anchor="middle" font-size="9" fill="#334155">User tags column</text>
+  <text x="105" y="196" text-anchor="middle" font-size="9" fill="#334155">"salary" as FINANCIAL</text>
+  <text x="105" y="210" text-anchor="middle" font-size="9" fill="#334155">via UI or REST API</text>
+
+  <!-- Step 2: Atlas publishes -->
+  <circle cx="270" cy="100" r="24" fill="#7c3aed" stroke="#fff" stroke-width="3"/>
+  <text x="270" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
+  <rect x="195" y="140" width="160" height="90" rx="8" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#s8)"/>
+  <text x="275" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Atlas Publishes Event</text>
+  <text x="275" y="182" text-anchor="middle" font-size="9" fill="#334155">Atlas sends notification</text>
+  <text x="275" y="196" text-anchor="middle" font-size="9" fill="#334155">to Kafka topic:</text>
+  <text x="275" y="212" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">ATLAS_ENTITIES</text>
+
+  <!-- Step 3: TagSync reads -->
+  <circle cx="450" cy="100" r="24" fill="#ea580c" stroke="#fff" stroke-width="3"/>
+  <text x="450" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
+  <rect x="370" y="140" width="170" height="90" rx="8" fill="#fff" stroke="#ea580c" stroke-width="2" filter="url(#s8)"/>
+  <text x="455" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#ea580c">TagSync Consumes</text>
+  <text x="455" y="182" text-anchor="middle" font-size="9" fill="#334155">ranger-tagsync daemon</text>
+  <text x="455" y="196" text-anchor="middle" font-size="9" fill="#334155">reads from Kafka topic</text>
+  <text x="455" y="210" text-anchor="middle" font-size="9" fill="#334155">extracts tag metadata</text>
+
+  <!-- Step 4: Push to Ranger -->
+  <circle cx="630" cy="100" r="24" fill="#dc2626" stroke="#fff" stroke-width="3"/>
+  <text x="630" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
+  <rect x="555" y="140" width="160" height="90" rx="8" fill="#fff" stroke="#dc2626" stroke-width="2" filter="url(#s8)"/>
+  <text x="635" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Push to Ranger Admin</text>
+  <text x="635" y="182" text-anchor="middle" font-size="9" fill="#334155">TagSync calls Ranger</text>
+  <text x="635" y="196" text-anchor="middle" font-size="9" fill="#334155">REST API to update</text>
+  <text x="635" y="210" text-anchor="middle" font-size="9" fill="#334155">tag store with new tags</text>
+
+  <!-- Step 5: Plugin downloads -->
+  <circle cx="820" cy="100" r="24" fill="#16a34a" stroke="#fff" stroke-width="3"/>
+  <text x="820" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
+  <rect x="740" y="140" width="170" height="90" rx="8" fill="#fff" stroke="#16a34a" stroke-width="2" filter="url(#s8)"/>
+  <text x="825" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">Plugin Enforces</text>
+  <text x="825" y="182" text-anchor="middle" font-size="9" fill="#334155">Ranger Hive plugin polls</text>
+  <text x="825" y="196" text-anchor="middle" font-size="9" fill="#334155">for tag updates and applies</text>
+  <text x="825" y="210" text-anchor="middle" font-size="9" fill="#334155">masking at query time</text>
+
+  <!-- Connecting arrows -->
+  <line x1="180" y1="180" x2="193" y2="180" stroke="#475569" stroke-width="1.5" marker-end="url(#ta)"/>
+  <line x1="355" y1="180" x2="368" y2="180" stroke="#475569" stroke-width="1.5" marker-end="url(#ta)"/>
+  <line x1="540" y1="180" x2="553" y2="180" stroke="#475569" stroke-width="1.5" marker-end="url(#ta)"/>
+  <line x1="715" y1="180" x2="738" y2="180" stroke="#475569" stroke-width="1.5" marker-end="url(#ta)"/>
+
+  <!-- Timing info -->
+  <rect x="50" y="260" width="900" height="40" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="500" y="280" text-anchor="middle" font-size="11" fill="#92400e" font-weight="600">Typical end-to-end latency: 30-60 seconds</text>
+  <text x="500" y="294" text-anchor="middle" font-size="10" fill="#92400e">TagSync polls Kafka periodically | Hive plugin polls Ranger Admin periodically</text>
+
+  <!-- Configuration reference -->
+  <rect x="50" y="320" width="420" height="80" rx="8" fill="#fff" stroke="#475569" stroke-width="1.5" filter="url(#s8)"/>
+  <text x="260" y="342" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">Key Configuration</text>
+  <text x="260" y="360" text-anchor="middle" font-size="10" fill="#64748b">ranger-tagsync-site.xml:</text>
+  <text x="260" y="378" text-anchor="middle" font-size="9" font-family="monospace" fill="#334155">ranger.tagsync.source.atlas=true</text>
+  <text x="260" y="392" text-anchor="middle" font-size="9" font-family="monospace" fill="#334155">ranger.tagsync.source.atlas.kafka.bootstrap.servers</text>
+
+  <rect x="530" y="320" width="420" height="80" rx="8" fill="#fff" stroke="#475569" stroke-width="1.5" filter="url(#s8)"/>
+  <text x="740" y="342" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">Troubleshooting</text>
+  <text x="740" y="362" text-anchor="middle" font-size="10" fill="#64748b">If tags aren't syncing, check:</text>
+  <text x="740" y="380" text-anchor="middle" font-size="9" fill="#334155">1. ps -ef | grep tagsync (is it running?)</text>
+  <text x="740" y="394" text-anchor="middle" font-size="9" fill="#334155">2. /var/log/ranger/tagsync/tagsync.log (errors?)</text>
+</svg>
